@@ -1,0 +1,10 @@
+[gd_resource type="MeshLibrary" load_steps=2 format=2]
+
+[sub_resource type="ArrayMesh" id=1]
+
+[resource]
+item/0/name = "MeshInstance"
+item/0/mesh = SubResource( 1 )
+item/0/mesh_transform = null
+item/0/shapes = [  ]
+item/0/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
