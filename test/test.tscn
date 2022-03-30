@@ -1,15 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tileset/grass.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Auto_GridMap.gd" type="Script" id=2]
 [ext_resource path="res://tileset/dungeon.tres" type="MeshLibrary" id=3]
 [ext_resource path="res://tileset/point_meshlib.tres" type="MeshLibrary" id=4]
-
-[sub_resource type="ProceduralSky" id=1]
-
-[sub_resource type="Environment" id=2]
-background_mode = 2
-background_sky = SubResource( 1 )
 
 [sub_resource type="Environment" id=3]
 ambient_light_color = Color( 1, 1, 1, 1 )
@@ -33,7 +27,7 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, -1, 0 )
 }
-mesh_library_3d = SubResource( 2 )
+mesh_library_3d = ExtResource( 3 )
 
 [node name="subgridmap" type="GridMap" parent="GridMap_castle"]
 mesh_library = ExtResource( 3 )
