@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot_Auto_GridMap_test"
+config/name="Godot_Auto_GridMap"
 
 [physics]
 
