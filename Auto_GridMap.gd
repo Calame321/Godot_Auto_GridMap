@@ -1,7 +1,7 @@
-tool class_name AutoGridMap extends GridMap
+@tool class_name AutoGridMap extends GridMap
 
-export( bool ) var refresh setget set_refresh
-export( Resource ) var mesh_library_3d = mesh_library_3d as MeshLibrary
+#@export_ var refresh: set = set_refresh, get = set_refresh
+@export var mesh_library_3d: MeshLibrary
 
 const TUL : = 0x01
 const TUR : = 0x02
@@ -14,8 +14,8 @@ const DDR : = 0x80
 
 var meshes: Dictionary
 var sub_gridmap : GridMap
-
-func set_refresh( value ):
+# 
+func set_refresh()->void:
 	print( "Refreshed !" )
 	_setup()
 
@@ -255,21 +255,23 @@ func get_cell_mask( x, y, z ) -> int:
 		mask = mask | DDR
 	
 	return mask
-
+#
 
 func get_main_cell_item( x, y, z ) -> int:
+	
 	var new_x : = int( floor( x / 2.0 ) )
 	var new_y : = int( floor( y / 2.0 ) )
 	var new_z : = int( floor( z / 2.0 ) )
 	
-	return get_cell_item( new_x, new_y, new_z )
+	return get_cell_item( Vector3i(new_x, new_y, new_z) )
 
-
-func set_cell_item( x: int, y: int, z: int, item: int, orientation: int = 0 ):
-	.set_cell_item( x, y, z, item )
+#
+func set_cell_item( coords:Vector3i, item: int, orientation: int = 0 ):
 	
-	if Engine.editor_hint:
-		update_bitmask_area( x, y, z )
+	super.set_cell_item( coords, item, orientation )
+	
+	if Engine.is_editor_hint():
+		update_bitmask_area( coords.x, coords.y, coords.z )
 
 
 func update_bitmask_area( x, y, z ):
@@ -281,10 +283,10 @@ func update_bitmask_area( x, y, z ):
 				var new_z = ( ( z * 2 ) - 1 ) + tz
 				update_sub_cell( new_x, new_y, new_z )
 
-
+#
 func update_sub_cell( x, y, z ):
 	if get_main_cell_item( x, y, z ) == -1:
-		sub_gridmap.set_cell_item( x, y, z, -1 )
+		sub_gridmap.set_cell_item( Vector3i(x, y, z), -1 )
 		return
 	
 	var mask = get_cell_mask( x, y, z )
@@ -292,9 +294,10 @@ func update_sub_cell( x, y, z ):
 	if meshes.has( mask ):
 		var mesh = meshes[ mask ][ "mesh" ]
 		var orientation = meshes[ mask ][ "orientation" ]
-		sub_gridmap.set_cell_item( x, y, z, mesh, orientation )
+		
+		sub_gridmap.set_cell_item( Vector3i(x, y, z), mesh, orientation )
 	else:
-		sub_gridmap.set_cell_item( x, y, z, -1 )
+		sub_gridmap.set_cell_item( Vector3i(x, y, z), -1 )
 
 
 func update_bitmask_region( start : = Vector3.ZERO, end : = Vector3.ZERO ):

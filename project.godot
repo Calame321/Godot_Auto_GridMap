@@ -6,21 +6,12 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "GridMap",
-"class": "AutoGridMap",
-"language": "GDScript",
-"path": "res://Auto_GridMap.gd"
-} ]
-_global_script_class_icons={
-"AutoGridMap": ""
-}
+config_version=5
 
 [application]
 
 config/name="Godot_Auto_GridMap"
+config/features=PackedStringArray("4.0")
 
 [physics]
 

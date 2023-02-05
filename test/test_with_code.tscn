@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3kmrjerhws0s"]
+
+[ext_resource type="Script" path="res://test/test_with_code.gd" id="1_fvfj5"]
+[ext_resource type="MeshLibrary" uid="uid://co04h0kh3uql" path="res://tileset/dungeon.tres" id="2_vj05j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yfg3p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iso14"]
+sky_material = SubResource("ProceduralSkyMaterial_yfg3p")
+
+[sub_resource type="Environment" id="Environment_h1yfd"]
+background_mode = 2
+sky = SubResource("Sky_iso14")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="test_with_code" type="Node3D"]
+script = ExtResource("1_fvfj5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h1yfd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, -0.195542, 0.753491, 0.627706, -0.460177, 0.494724, -0.737214, 0, 6.02113, 0)
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_vj05j")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 0, 14, 0, 65535, 14, 1, 1, 4)
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.927347, 0.374202, 0, -0.374202, 0.927347, 0, 4.91478, 9.01193)
