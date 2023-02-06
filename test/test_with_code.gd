@@ -6,6 +6,5 @@ extends Node3D
 func _ready():
 	for x in range(20):
 		for z in range(20):
-			grid.set_cell_item(Vector3i(x-10,0,z-10),0)
-# This throws an error now, but commenting seems to have no effect on simple stage	
-#	grid.update_bitmask_region()
+			grid.set_cell_item(Vector3i(x-10,0,z-10),0)	
+	grid.update_bitmask_region()
