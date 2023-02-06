@@ -1,6 +1,7 @@
 @tool class_name AutoGridMap extends GridMap
 
-#@export_ var refresh: set = set_refresh, get = set_refresh
+# Can't make it work for now, reopening the scene triggers the script correctly
+# @export var refresh: set = set_refresh, get = set_refresh
 @export var mesh_library_3d: MeshLibrary
 
 const TUL : = 0x01
@@ -255,7 +256,6 @@ func get_cell_mask( x, y, z ) -> int:
 		mask = mask | DDR
 	
 	return mask
-#
 
 func get_main_cell_item( x, y, z ) -> int:
 	
@@ -265,7 +265,6 @@ func get_main_cell_item( x, y, z ) -> int:
 	
 	return get_cell_item( Vector3i(new_x, new_y, new_z) )
 
-#
 func set_cell_item( coords:Vector3i, item: int, orientation: int = 0 ):
 	
 	super.set_cell_item( coords, item, orientation )
@@ -283,7 +282,7 @@ func update_bitmask_area( x, y, z ):
 				var new_z = ( ( z * 2 ) - 1 ) + tz
 				update_sub_cell( new_x, new_y, new_z )
 
-#
+
 func update_sub_cell( x, y, z ):
 	if get_main_cell_item( x, y, z ) == -1:
 		sub_gridmap.set_cell_item( Vector3i(x, y, z), -1 )
